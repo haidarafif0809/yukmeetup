@@ -1,0 +1,16 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+
+  <h3><%= err %></h3>
+  <div>
+    <form action="" method="post">
+      <input type="hidden" value="<%= obj.id %>" name="id">
+      <input type="text" value="<%= obj.eventTitle %>" name="newEventTitle" placeholder="event title...">
+      <input type="text" value="<%= obj.eventOrganizer %>" name="newEventOrganizer" placeholder="event organizer...">
+      <input type="text" value="<%= obj.dueDate %>" name="newDueDate" placeholder="mm/dd/yyyy">
+      <input type="integer" value="<%= obj.userId %>" name="newUserId" placeholder="UserId...">
+      <input type="submit">
+    </form>
+  </div>
+
+<% include ../partials/footer %>

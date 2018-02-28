@@ -27,7 +27,9 @@ app.use(function(req, res, next) {
 
 //routes
 app.use('/', router);
+
 app.use('/users', users);
+
 
 const port = 3000;
 
