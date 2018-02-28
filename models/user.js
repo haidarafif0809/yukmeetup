@@ -1,17 +1,17 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
-    emai: {
+    email: {
       type: DataTypes.STRING,
       unique: {
         msg: 'Email Sudah Terdaftar'
-      }
+      },
       validate: {
         isEmail: {
-          msg: 'Email Harus Di Masukkan Dalam Format foo@bar.com'
+          msg: "Email harus dalam format foo@bar.com"
         }
       }
-    }
+    },
     name: DataTypes.STRING,
     password: DataTypes.STRING
   }, {});
