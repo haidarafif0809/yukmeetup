@@ -10,6 +10,7 @@
         <li><a href="/users/register">Register</a></li>
       <% } else { %>
         <li><a href="/users/profile">My Profile (<%= user.email %>)</a></li>
+        <li><a href="/events">My Event List</a></li>
         <li><a href="/users/logout">Logout</a></li>
         <a href="/events/add" class="btn btn-danger navbar-btn" >Create New Event</a>
       <% }%>
