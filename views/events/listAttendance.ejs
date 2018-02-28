@@ -1,0 +1,26 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+
+  <div class="container">
+    <h2>List of Attendees</h2>
+    <table class="table">
+      <thead>
+        <th>No</th>
+        <th>Name</th>
+        <th>Email</th>
+      </thead>
+      <tbody>
+        <% if(data!==null){ %>
+          <% data.Users.forEach((user) =>{ %>
+            <tr>
+              <td><%= Number(i)+1 %></td>
+              <td><%= user.name %></td>
+              <td><%= user.email %></td>
+            </tr>
+          <% }) %>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+
+<% include ../partials/footer %>

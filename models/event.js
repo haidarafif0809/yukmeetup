@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Event.associate = function(models) {
-    // associations can be defined here
+    Event.belongsTo(models.User)
+    Event.belongsToMany(models.User,{through:models.Attendee})
+    Event.hasMany(models.Attendee)
   };
   return Event;
 };
