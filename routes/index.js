@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
+const router = require('express').Router();
+
 
 router.get('/', (req, res) => {
-  res.send('Home');
+  res.render('home/index');
 });
 
 router.use('/events', require('./events.js'));

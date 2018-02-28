@@ -1,0 +1,83 @@
+<%- include ../partials/header %>
+<%- include ../partials/navbar %>
+    <div class="container " style="margin-top: 2% ">
+      <div class="jumbotron ">
+        <h1 class="text-center">Find a Meetup!</h1>
+        <form class=" " action="index.html " method="post ">
+          <div class="form-group">
+            <select class="" name="" placeholder="Search Meetup Here">
+              <option value="">Search Meetup Here</option>
+              <option value="1">test</option>
+              <option value="2">test 1</option>
+              <option value="3">test 2</option>
+              <option value="4">test 3</option>
+            </select>
+          </div>
+          <div class="form-group">
+              <button type="submit" name="button" class="btn btn-danger btn-block">Search</button>
+          </div>
+        </form>
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-2">
+              <p>10:00 AM </p>
+            </div>
+            <div class="col-md-7">
+              <p>Event Creator Name |
+              <b>EVENT TITLE</b> |
+              102 people going</p>
+            </div>
+            <div class="col-md-3">
+              <div class="float-right">
+                <a href="#" class="btn btn-danger">Join</a>
+                <a href="#" class="btn btn-primary">Like</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-2">
+              <p>10:00 AM </p>
+            </div>
+            <div class="col-md-7">
+              <p>Event Creator Name |
+              <b>EVENT TITLE</b> |
+              102 people going</p>
+            </div>
+            <div class="col-md-3">
+              <div class="float-right">
+                <a href="#" class="btn btn-danger">Join</a>
+                <a href="#" class="btn btn-primary">Like</a>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-md-2">
+              <p>10:00 AM </p>
+            </div>
+            <div class="col-md-7">
+              <p>Event Creator Name |
+              <b>EVENT TITLE</b> |
+              102 people going</p>
+            </div>
+            <div class="col-md-3">
+              <div class="float-right">
+                <a href="#" class="btn btn-danger">Join</a>
+                <a href="#" class="btn btn-primary">Like</a>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  <script>
+  $(function() {
+  	$('select').selectize();
+  });
+  </script>
+<%- include ../partials/footer %>
