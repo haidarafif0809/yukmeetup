@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
-// const router = require('./routes/index');
+const router = require('./routes/index');
 
 app.use(cookieParser('keyboard cat'));
 app.use(session({ cookie: { maxAge: 60000 }}));
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({
   extended: false
 }))
 //routes
-// app.use('/', router);
+app.use('/', router);
 
 const port = 3000;
 
