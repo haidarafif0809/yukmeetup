@@ -1,0 +1,30 @@
+{
+  "name": "yukmeetup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haidarafif0809/yukmeetup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haidarafif0809/yukmeetup/issues"
+  },
+  "homepage": "https://github.com/haidarafif0809/yukmeetup#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "pg": "^7.4.1",
+    "sequelize": "^4.34.1"
+  }
+}
