@@ -57,8 +57,7 @@ router.get('/edit/:id',auth.isLogin,function(req,res){
       id: dataEvent.id,
       eventTitle: dataEvent.eventTitle,
       eventOrganizer: dataEvent.eventOrganizer,
-      dueDate: dataEvent.dueDate,
-      userId: dataEvent.UserId
+      dueDate: dataEvent.dueDate
     }
     res.render('events/editEvent.ejs',{obj:obj,err:errorMessage})
   })
@@ -68,8 +67,7 @@ router.post('/edit/:id',auth.isLogin,function(req,res){
   models.Event.update({
     eventTitle: req.body.newEventTitle,
     eventOrganizer: req.body.newEventOrganizer,
-    dueDate: req.body.newDueDate,
-    UserId: req.body.newUserId
+    dueDate: req.body.newDueDate
   },{where:{id:req.body.id}})
    .then(() =>{
      res.redirect('/events')
