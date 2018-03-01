@@ -10,7 +10,7 @@ router.get('/',auth.isLogin,function(req,res){
   models.Event.findAll({
     where: {
       UserId: req.session.user.id
-    }
+    },
   }).then((dataEvent) =>{
       let obj = {
         dataEvent: dataEvent
@@ -18,6 +18,40 @@ router.get('/',auth.isLogin,function(req,res){
       res.render('events/listEvents.ejs',obj)
    })
 })
+
+router.get('/:id/detail', (req, res) => {
+  let id = req.params.id;
+  models.Event.findOne({
+    where: {
+      id: id
+    },
+    include: [{
+      model: models.Comment,
+      include : models.User,
+      order: [ ['createdAt','DESC']]
+    }]
+  }).then((event) => {
+    // res.send(event);
+    const alertMessage = req.flash('alertMessage');
+    const alertStatus = req.flash('alertStatus');
+    const alert = { message: alertMessage, status: alertStatus};
+    res.render('events/detail',{event: event,alert: alert});
+  });
+});
+
+router.post('/:id/comment', auth.isLogin, (req, res) => {
+  let eventId = req.params.id;
+  models.Comment.create({
+    EventId: eventId,
+    UserId: req.session.user.id,
+    text: req.body.text
+  }).then((comment) => {
+    res.redirect(`/events/${eventId}/detail`);
+  }).catch((err) => {
+
+    res.redirect(`/events/${eventId}/detail`);
+  });
+});
 
 router.get('/add',auth.isLogin,function(req,res){
   let errorMessage;

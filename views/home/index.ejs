@@ -32,6 +32,7 @@
           <% for(let i=0; i<event.Likes.length; i++){ %>
             <% countLike++ %>
           <% } %>
+
           <li class="list-group-item">
             <div class="row">
               <div class="col-md-1">
@@ -41,10 +42,12 @@
                 <p><%= event.dueDate %> </p>
               </div>
               <div class="col-md-7">
+                <a href="/events/<%= event.id %>/detail" >
                 <p><%= event.eventOrganizer %> |
                 <b><%= event.eventTitle %></b> |
                 <%= countPeople %> people going |
                 <%= countLike %> people like this</p>
+                </a>
               </div>
               <div class="col-md-2">
                 <div class="float-right">
