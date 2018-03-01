@@ -2,10 +2,15 @@
 <% include ../partials/navbar %>
 
   <div class="container">
-    <h2>EVENT LIST</h2></br>
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">My Event List</li>
+    </ol>
+    <h2>My Event List</h2></br>
     <a class="btn btn-primary" href="/events/add">Add Events</a></br></br>
     <table class="table">
       <thead>
+        <th>Id</th>
         <th>Due Date</th>
         <th>Event Title</th>
         <th>Event Organizer</th>
@@ -15,6 +20,7 @@
       <tbody>
         <% for(let i in dataEvent){ %>
           <tr>
+            <td><%= dataEvent[i].id %></td>
             <td><%= dataEvent[i].dueDate %></td>
             <td><%= dataEvent[i].eventTitle %></td>
             <td><%= dataEvent[i].eventOrganizer %></td>
