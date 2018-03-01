@@ -4,9 +4,19 @@
   <div class="container">
       <div class="row">
           <div class="col-md-8 col-md-offset-2">
+            <ol class="breadcrumb">
+             <li><a href="/">Home</a></li>
+             <li ><a href="/events">My Event List</a></li>
+             <li class="active">Add Event</li>
+           </ol>
               <div class="panel panel-default ">
                   <div class="panel-heading">Add Event</div>
                   <div class="panel-body">
+                    <% if (err != null) { %>
+                      <div class="alert alert-danger">
+                      <%= err %>
+                      </div>
+                    <% } %>
                       <form class="form-horizontal" method="POST" action="/events/add">
                           <div class="form-group">
                               <label for="eventTitle" class="col-md-4 control-label">Event Title</label>
@@ -20,7 +30,7 @@
                                   <input id="eventOrganizer" type="text" class="form-control" name="newEventOrganizer">
                               </div>
                           </div>
-                          <div class="form-group">
+                          <div class="form-group" >
                               <label for="dueDate" class="col-md-4 control-label">Due Date</label>
                               <div class="col-md-6">
                                   <input id="dueDate" type="text" class="form-control" name="newDueDate" placeholder="mm/dd/yyyy">
@@ -38,7 +48,11 @@
               </div>
           </div>
       </div>
-    <h4><font color="red"><center><%= err %></center></br></font></h4>
   </div>
 
+  <script type="text/javascript">
+
+    $('#dueDate').datetimepicker();
+
+  </script>
 <% include ../partials/footer %>
