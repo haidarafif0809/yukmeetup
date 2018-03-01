@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     Event.belongsTo(models.User)
     Event.belongsToMany(models.User,{through:models.Attendee})
     Event.hasMany(models.Attendee)
+    Event.hasMany(models.Like)
   };
   Event.afterDestroy((event) => {
     sequelize.Attendee.all({

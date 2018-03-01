@@ -146,4 +146,19 @@ router.get('/listAttendance/:id',auth.isLogin,function(req,res){
   })
 })
 
+router.get('/like/:id',auth.isLogin,function(req,res){
+  models.Like.create({
+      EventId: req.params.id,
+      userId: req.session.user.id
+  }).then((events) => {
+    req.flash('alertMessage', `You Like This`);
+    req.flash('alertStatus', 'success');
+    res.redirect('/');
+  }).catch((err) => {
+    req.flash('alertMessage', err.message);
+    req.flash('alertStatus', 'danger');
+    res.redirect('/');
+  });
+});
+
 module.exports = router;
