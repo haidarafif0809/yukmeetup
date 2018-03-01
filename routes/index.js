@@ -13,9 +13,10 @@ router.get('/', (req, res) => {
       dueDate: {
         [Op.gte]: Date.now(),
       }
-    }
+    },include:[{model:models.Attendee}]
   }).then((events) => {
     res.render('home/index',{events: events,alert: alert});
+    // res.send(events)
   }).catch((err) => {
 
   })
