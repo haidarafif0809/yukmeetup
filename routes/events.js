@@ -2,19 +2,25 @@ const express = require('express');
 const router = express.Router();
 const models = require('../models');
 const sequelize = require('sequelize');
+const app = express();
+const auth = require('../helpers/auth');
 
 
-router.get('/',function(req,res){
-  models.Event.findAll({})
-    .then((dataEvent) =>{
+
+router.get('/',auth.isLogin,function(req,res){
+  models.Event.findAll({
+    where: {
+      UserId: req.session.user.id
+    }
+  }).then((dataEvent) =>{
       let obj = {
         dataEvent: dataEvent
       }
       res.render('events/listEvents.ejs',obj)
-    })
+   })
 })
 
-router.get('/add',function(req,res){
+router.get('/add',auth.isLogin,function(req,res){
   let errorMessage;
   if(req.query===null){
     errorMessage = null
@@ -24,12 +30,12 @@ router.get('/add',function(req,res){
   res.render('events/addEvent.ejs',{err:errorMessage})
 })
 
-router.post('/add',function(req,res){
+router.post('/add',auth.isLogin,function(req,res){
   models.Event.create({
     eventTitle: req.body.newEventTitle,
     eventOrganizer: req.body.newEventOrganizer,
     dueDate: req.body.newDueDate,
-    UserId: null,
+    UserId: req.session.user.id,
     createdAt: new Date(),
     updatedAt: new Date()
   }).then(() =>{
@@ -39,7 +45,7 @@ router.post('/add',function(req,res){
   })
 })
 
-router.get('/edit/:id',function(req,res){
+router.get('/edit/:id',auth.isLogin,function(req,res){
   models.Event.findById(req.params.id).then(dataEvent =>{
     let errorMessage;
     if(req.query===null){
@@ -58,7 +64,7 @@ router.get('/edit/:id',function(req,res){
   })
 })
 
-router.post('/edit/:id',function(req,res){
+router.post('/edit/:id',auth.isLogin,function(req,res){
   models.Event.update({
     eventTitle: req.body.newEventTitle,
     eventOrganizer: req.body.newEventOrganizer,
@@ -72,7 +78,7 @@ router.post('/edit/:id',function(req,res){
    })
 })
 
-router.get('/delete/:id',function(req,res){
+router.get('/delete/:id',auth.isLogin,function(req,res){
   models.Event.destroy({
     where:{id:req.params.id}
   }).then(() =>{
@@ -80,9 +86,24 @@ router.get('/delete/:id',function(req,res){
   })
 })
 
+
 router.get('/join/:id',function(req,res){
 
   res.send('join');
 });
+
+router.get('/listAttendance/:id',auth.isLogin,function(req,res){
+  models.Attendee.findOne({
+    include:[{model:models.User}],
+    where:{EventId:req.params.id}
+  }).then((dataUser) =>{
+    let obj = {
+      data: dataUser
+    }
+    res.render('events/listAttendance.ejs',obj)
+    // res.send(dataUser);
+  })
+})
+
 
 module.exports = router;

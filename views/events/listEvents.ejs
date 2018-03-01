@@ -9,6 +9,7 @@
         <th>Due Date</th>
         <th>Event Title</th>
         <th>Event Organizer</th>
+        <th>Attendance</th>
         <th>Action</th>
       </thead>
       <tbody>
@@ -17,6 +18,9 @@
             <td><%= dataEvent[i].dueDate %></td>
             <td><%= dataEvent[i].eventTitle %></td>
             <td><%= dataEvent[i].eventOrganizer %></td>
+            <td>
+              <a class="btn btn-info" href="/events/listAttendance/<%= dataEvent[i].id %>">Show List</a>
+            </td>
             <td>
               <a class="btn btn-warning" href="/events/edit/<%= dataEvent[i].id %>" >Edit</a>
               <a class="btn btn-danger" href="/events/delete/<%= dataEvent[i].id %>">Delete</a>
