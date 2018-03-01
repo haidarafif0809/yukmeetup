@@ -3,6 +3,7 @@ const router = express.Router();
 const models = require('../models');
 const sequelize = require('sequelize');
 
+
 router.get('/',function(req,res){
   models.Event.findAll({})
     .then((dataEvent) =>{
@@ -78,5 +79,10 @@ router.get('/delete/:id',function(req,res){
     res.redirect('/events')
   })
 })
+
+router.get('/join/:id',function(req,res){
+
+  res.send('join');
+});
 
 module.exports = router;
