@@ -13,10 +13,9 @@ router.get('/', (req, res) => {
       dueDate: {
         [Op.gte]: Date.now(),
       }
-    },include:[{model:models.Attendee}]
+    },include:[{model:models.Attendee},{model:models.Like}]
   }).then((events) => {
     res.render('home/index',{events: events,alert: alert});
-    // res.send(events)
   }).catch((err) => {
 
   })
