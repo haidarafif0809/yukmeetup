@@ -11,6 +11,8 @@ app.use(cookieParser('keyboard cat'));
 app.use(session({ cookie: {  }}));
 app.use(flash());
 
+app.use(express.static('public'))
+
 app.set('views', __dirname+'/views/');
 app.set('view engine', 'ejs');
 
