@@ -6,6 +6,7 @@ module.exports = {
         email: 'member@gmail.com',
         name: 'member',
         password: 'rahasia',
+        phoneNumber: '081222498686',
         createdAt: new Date(),
         updatedAt: new Date(),
       }], {});

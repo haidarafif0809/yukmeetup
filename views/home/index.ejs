@@ -26,6 +26,9 @@
         <% events.forEach((event) => { %>
           <li class="list-group-item">
             <div class="row">
+              <div class="col-md-1">
+                <p>ID: <%= event.id %> </p>
+              </div>
               <div class="col-md-2">
                 <p><%= event.dueDate %> </p>
               </div>
@@ -34,7 +37,7 @@
                 <b><%= event.eventTitle %></b> |
                 102 people going</p>
               </div>
-              <div class="col-md-3">
+              <div class="col-md-2">
                 <div class="float-right">
                   <a href="/events/join/<%= event.id %>" class="btn btn-danger">Join</a>
                   <a href="#" class="btn btn-primary">Like</a>

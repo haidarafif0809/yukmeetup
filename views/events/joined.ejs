@@ -9,6 +9,7 @@
     <h2>Joined Events</h2></br>
     <table class="table">
       <thead>
+        <th>Id</th>
         <th>Due Date</th>
         <th>Event Title</th>
         <th>Event Organizer</th>
@@ -17,6 +18,7 @@
       <tbody>
         <% for(let i in user.Events){ %>
           <tr>
+            <td><%= user.Events[i].id %></td>
             <td><%= user.Events[i].dueDate %></td>
             <td><%= user.Events[i].eventTitle %></td>
             <td><%= user.Events[i].eventOrganizer %></td>

@@ -4,8 +4,7 @@ const models = require('../models');
 const sequelize = require('sequelize');
 const app = express();
 const auth = require('../helpers/auth');
-
-
+const sms = require('../helpers/sms');
 
 router.get('/',auth.isLogin,function(req,res){
   models.Event.findAll({
@@ -92,6 +91,8 @@ router.get('/join/:id',auth.isLogin,function(req,res){
       EventId: eventId,
       UserId: req.session.user.id
   }).then((events) => {
+    let smsText = `YukMeetup! sms ini adalah tiket untuk datang ke event dengan Id : ${eventId}`;
+    sms.sendSms(req.session.user.phoneNumber,smsText);
     req.flash('alertMessage', `Success Join Event`);
     req.flash('alertStatus', 'success');
     res.redirect('/');
@@ -103,12 +104,13 @@ router.get('/join/:id',auth.isLogin,function(req,res){
 });
 
 router.get('/join',auth.isLogin,function(req,res){
-
   let eventId = req.query.EventId;
   models.Attendee.create({
       EventId: eventId,
       UserId: req.session.user.id
   }).then((events) => {
+    let smsText = `YukMeetup! sms ini adalah tiket untuk datang ke event dengan Id : ${eventId}`;
+    sms.sendSms(req.session.user.phoneNumber,smsText);
     req.flash('alertMessage', `Success Join Event`);
     req.flash('alertStatus', 'success');
     res.redirect('/');
