@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "fitrul31",
-    "password": "fitrul31",
-    "database": "finalProject",
+    "username": "mac",
+    "password": "",
+    "database": "yukmeetup",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },

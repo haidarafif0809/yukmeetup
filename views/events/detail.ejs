@@ -1,0 +1,70 @@
+<%- include ../partials/header %>
+<%- include ../partials/navbar %>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <ol class="breadcrumb">
+           <li><a href="/">Home</a></li>
+           <li class="active">Event Detail</li>
+         </ol>
+            <div class="panel panel-default ">
+                <div class="panel-heading"><b>Event Detail</b></div>
+                <div class="panel-body">
+                  <h2><%= event.eventTitle %></h2>
+                  <h4><%= event.eventOrganizer %></h4>
+                  <h6><%= event.dueDate %></h6>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                  <a href="/events/join/<%= event.id %>" class="btn btn-danger">Join</a>
+                  <a href="/events/like/<%= event.id %>" class="btn btn-primary">Like</a>
+
+                </div>
+            </div>
+
+            <div class="panel panel-default ">
+                <div class="panel-heading">Give Comment About this Event!</div>
+                <div class="panel-body">
+                  <form class="form-horizontal" method="POST" action="/events/<%= event.id %>/comment">
+                      <div class="form-group">
+                          <label for="text" class="col-md-4 control-label">Comment Text</label>
+                          <div class="col-md-6">
+                              <input id="text" type="text" class="form-control" name="text" value="" required autofocus>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-8 col-md-offset-4">
+                              <button type="submit" class="btn btn-primary">
+                                  Send Comment
+                              </button>
+                          </div>
+                      </div>
+                  </form>
+                </div>
+            </div>
+            <% if(alert.message != '') { %>
+            <div class="alert alert-<%= alert.status %>">
+              <%= alert.message %>
+            </div>
+            <% } %>
+            <div class="panel panel-default ">
+                <div class="panel-heading">Comment About This Event</div>
+                <div class="panel-body">
+                  <ul class="list-group">
+                  <% event.Comments.forEach((comment) => { %>
+
+                     <li class="list-group-item">
+                        <h4>
+                          <%= comment.User.name %> (<%= comment.User.email %>) || <%= comment.createdAt %>
+                        </h4>
+                        <h5>
+                          <%= comment.text %>
+                        </h5>
+                     </li>
+                  <% }) %>
+                  </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include ../partials/footer %>
