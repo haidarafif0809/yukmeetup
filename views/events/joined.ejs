@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      <li><a href="/">Home</a></li>
+      <li class="active">Joined Event</li>
+    </ol>
+    <h2>Joined Events</h2></br>
+    <table class="table">
+      <thead>
+        <th>Due Date</th>
+        <th>Event Title</th>
+        <th>Event Organizer</th>
+        <th>Attendance</th>
+      </thead>
+      <tbody>
+        <% for(let i in user.Events){ %>
+          <tr>
+            <td><%= user.Events[i].dueDate %></td>
+            <td><%= user.Events[i].eventTitle %></td>
+            <td><%= user.Events[i].eventOrganizer %></td>
+            <td>
+              <a class="btn btn-info" href="/events/listAttendance/<%= user.Events[i].id %>">Show List</a>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
+
+<% include ../partials/footer %>

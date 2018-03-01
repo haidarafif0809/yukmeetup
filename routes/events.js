@@ -57,8 +57,7 @@ router.get('/edit/:id',auth.isLogin,function(req,res){
       id: dataEvent.id,
       eventTitle: dataEvent.eventTitle,
       eventOrganizer: dataEvent.eventOrganizer,
-      dueDate: dataEvent.dueDate,
-      userId: dataEvent.UserId
+      dueDate: dataEvent.dueDate
     }
     res.render('events/editEvent.ejs',{obj:obj,err:errorMessage})
   })
@@ -68,8 +67,7 @@ router.post('/edit/:id',auth.isLogin,function(req,res){
   models.Event.update({
     eventTitle: req.body.newEventTitle,
     eventOrganizer: req.body.newEventOrganizer,
-    dueDate: req.body.newDueDate,
-    UserId: req.body.newUserId
+    dueDate: req.body.newDueDate
   },{where:{id:req.body.id}})
    .then(() =>{
      res.redirect('/events')
@@ -87,9 +85,51 @@ router.get('/delete/:id',auth.isLogin,function(req,res){
 })
 
 
-router.get('/join/:id',function(req,res){
+router.get('/join/:id',auth.isLogin,function(req,res){
 
-  res.send('join');
+  let eventId = req.params.id;
+  models.Attendee.create({
+      EventId: eventId,
+      UserId: req.session.user.id
+  }).then((events) => {
+    req.flash('alertMessage', `Success Join Event`);
+    req.flash('alertStatus', 'success');
+    res.redirect('/');
+  }).catch((err) => {
+    req.flash('alertMessage', err.message);
+    req.flash('alertStatus', 'danger');
+    res.redirect('/');
+  });
+});
+
+router.get('/join',auth.isLogin,function(req,res){
+
+  let eventId = req.query.EventId;
+  models.Attendee.create({
+      EventId: eventId,
+      UserId: req.session.user.id
+  }).then((events) => {
+    req.flash('alertMessage', `Success Join Event`);
+    req.flash('alertStatus', 'success');
+    res.redirect('/');
+  }).catch((err) => {
+    req.flash('alertMessage', err.message);
+    req.flash('alertStatus', 'danger');
+    res.redirect('/');
+  });
+});
+
+router.get('/joined',auth.isLogin, (req, res) => {
+
+  models.User.findOne({
+    where: {
+      id: req.session.user.id,
+    },
+    include: [{ model: models.Event}]
+  }).then((user) => {
+    res.render('events/joined',{user: user});
+  });
+
 });
 
 router.get('/listAttendance/:id',auth.isLogin,function(req,res){
@@ -104,6 +144,5 @@ router.get('/listAttendance/:id',auth.isLogin,function(req,res){
     // res.send(dataUser);
   })
 })
-
 
 module.exports = router;

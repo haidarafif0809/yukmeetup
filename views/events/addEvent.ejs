@@ -1,14 +1,44 @@
 <% include ../partials/header %>
 <% include ../partials/navbar %>
 
-  <h3><%= err %></h3>
-  <div>
-    <form action="" method="post">
-      <input type="text" value="" name="newEventTitle" placeholder="event title here..."></br>
-      <input type="text" value="" name="newEventOrganizer" placeholder="event organizer here..."></br>
-      <input type="text" value="" name="newDueDate" placeholder="mm/dd/yyyy"></br>
-      <input type="submit">
-    </form>
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+              <div class="panel panel-default ">
+                  <div class="panel-heading">Add Event</div>
+                  <div class="panel-body">
+                      <form class="form-horizontal" method="POST" action="/events/add">
+                          <div class="form-group">
+                              <label for="eventTitle" class="col-md-4 control-label">Event Title</label>
+                              <div class="col-md-6">
+                                  <input id="eventTitle" type="text" class="form-control" name="newEventTitle" value="">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="eventOrganizer" class="col-md-4 control-label">Event Organizer</label>
+                              <div class="col-md-6">
+                                  <input id="eventOrganizer" type="text" class="form-control" name="newEventOrganizer">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="dueDate" class="col-md-4 control-label">Due Date</label>
+                              <div class="col-md-6">
+                                  <input id="dueDate" type="text" class="form-control" name="newDueDate" placeholder="mm/dd/yyyy">
+                              </div>
+                          </div>
+                          <div class="form-group">
+                              <div class="col-md-8 col-md-offset-4">
+                                  <button type="submit" class="btn btn-primary">
+                                      Add
+                                  </button>
+                              </div>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+    <h4><font color="red"><center><%= err %></center></br></font></h4>
   </div>
 
 <% include ../partials/footer %>

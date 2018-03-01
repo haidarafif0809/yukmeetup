@@ -4,6 +4,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+          <ol class="breadcrumb">
+           <li><a href="/">Home</a></li>
+           <li class="active">Register</li>
+         </ol>
             <% if(alert.message != '') { %>
             <div class="alert alert-<%= alert.status %>">
               <%= alert.message %>

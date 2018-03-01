@@ -8,7 +8,7 @@ const router = require('./routes/index');
 const users = require('./routes/users');
 
 app.use(cookieParser('keyboard cat'));
-app.use(session({ cookie: { maxAge: 60000 }}));
+app.use(session({ cookie: {  }}));
 app.use(flash());
 
 app.set('views', __dirname+'/views/');
