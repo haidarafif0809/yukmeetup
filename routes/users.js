@@ -10,6 +10,7 @@ router.get('/register', (req, res) => {
   let data = {
     name: req.flash('name'),
     email: req.flash('email'),
+    phoneNumber: req.flash('phoneNumber'),
   };
   res.render('users/register',{data: data, alert: alert});
 });
@@ -19,14 +20,16 @@ router.post('/register', (req, res) => {
   models.User.build({
     email: input.email,
     name: input.name,
-    password: input.password
+    password: input.password,
+    phoneNumber: input.phoneNumber
   }).save().then((user) => {
 
     req.session.isLogin = true;
     req.session.user =  {
       id: user.id,
       email: user.email,
-      name: user.name
+      name: user.name,
+      phoneNumber: user.phoneNumber
     }
     res.redirect('/');
   }).catch((err) => {
@@ -34,6 +37,7 @@ router.post('/register', (req, res) => {
     req.flash('alertStatus', 'danger');
     req.flash('email',req.body.email);
     req.flash('name',req.body.name);
+    req.flash('phoneNumber',req.body.phoneNumber);
     res.redirect('/users/register');
   })
 
@@ -65,7 +69,8 @@ router.post('/login', (req, res) => {
       req.session.user = {
         id: user.id,
         email: user.email,
-        name: user.name
+        name: user.name,
+        phoneNumber: user.phoneNumber
       }
       res.redirect('/');
     }
@@ -101,7 +106,8 @@ router.post('/profile', auth.isLogin, (req, res) => {
     req.session.user =  {
       id: user.id,
       email: user.email,
-      name: user.name
+      name: user.name,
+      phoneNumber: user.phoneNumber
     }
     res.redirect('/users/profile');
   }).catch((err) => {
