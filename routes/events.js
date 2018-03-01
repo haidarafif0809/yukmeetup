@@ -135,15 +135,14 @@ router.get('/joined',auth.isLogin, (req, res) => {
 });
 
 router.get('/listAttendance/:id',auth.isLogin,function(req,res){
-  models.Attendee.findOne({
+  models.Attendee.findAll({
     include:[{model:models.User}],
     where:{EventId:req.params.id}
-  }).then((dataUser) =>{
+  }).then((user) =>{
     let obj = {
-      data: dataUser
+      data: user
     }
     res.render('events/listAttendance.ejs',obj)
-    // res.send(dataUser);
   })
 })
 
