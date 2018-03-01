@@ -19,5 +19,27 @@ module.exports = (sequelize, DataTypes) => {
     User.belongsToMany(models.Event,{through:models.Attendee})
     User.hasMany(models.Attendee)
   };
+  User.afterDestroy((user) => {
+    sequelize.models.Attendee.all({
+      where: {
+        UserId: user.id
+      }
+    }).then((attendees) => {
+      attendees.forEach((attendee) => {
+        attendee.destroy();
+      });
+    });
+
+    sequelize.models.Event.all({
+      where: {
+        UserId: user.id
+      }
+    }).then((events) => {
+      events.forEach((event) => {
+        event.destroy();
+      });
+    })
+
+  });
   return User;
 };
