@@ -41,18 +41,20 @@
               <div class="col-md-2">
                 <p><%= event.dueDate %> </p>
               </div>
-              <div class="col-md-7">
+              <div class="col-md-6">
                 <a href="/events/<%= event.id %>/detail" >
+
                 <p><%= event.eventOrganizer %> |
                 <b><%= event.eventTitle %></b> |
                 <%= countPeople %> people going |
                 <%= countLike %> people like this</p>
                 </a>
               </div>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <div class="float-right">
-                  <a href="/events/join/<%= event.id %>" class="btn btn-danger">Join</a>
-                  <a href="/events/like/<%= event.id %>" class="btn btn-primary">Like</a>
+                  <a href="/events/join/<%= event.id %>" class="btn btn-danger">Join <span class="glyphicon glyphicon-log-in"></span></a>
+                  <a href="/events/like/<%= event.id %>" class="btn btn-primary">Like <span class="glyphicon glyphicon-thumbs-up"></span></a>
+                  <a href="https://www.facebook.com/sharer/sharer.php?u=<%= host %>/events/<%= event.id %>/detail" class="btn btn-info">Share <span class="glyphicon glyphicon-share-alt"></span></a>
                 </div>
               </div>
             </div>
