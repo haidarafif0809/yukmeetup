@@ -6,21 +6,20 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     validate: {
       cannotJoinOwnEvent(done){
-        // sequelize.Event.count({
-        //   where: {
-        //     UserId: this.UserId,
-        //     id: this.EventId
-        //   }
-        // }).then((count) => {
-        //   if (count > 0) {
-        //     done(new Error('Cannot Join Own Event!'))
-        //   } else {
-        //     done();
-        //   }
-        // }).catch((err) => {
-        //     done(err)
-        // });
-        done();
+        sequelize.models.Event.count({
+          where: {
+            UserId: this.UserId,
+            id: this.EventId
+          }
+        }).then((count) => {
+          if (count > 0) {
+            done(new Error('Cannot Join Own Event!'))
+          } else {
+            done();
+          }
+        }).catch((err) => {
+            done(err)
+        });
       },
       cannotJoinTwice(done){
         Attendee.count({
