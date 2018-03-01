@@ -7,72 +7,37 @@
           <div class="form-group">
             <select class="" name="" placeholder="Search Meetup Here">
               <option value="">Search Meetup Here</option>
-              <option value="1">test</option>
-              <option value="2">test 1</option>
-              <option value="3">test 2</option>
-              <option value="4">test 3</option>
+              <% events.forEach((event) => { %>
+                <option value="<%= event.id %>">  <%= event.eventOrganizer + " || " + event.eventTitle %></option>
+              <% }) %>
             </select>
           </div>
           <div class="form-group">
-              <button type="submit" name="button" class="btn btn-danger btn-block">Search</button>
+              <button type="submit" name="button" class="btn btn-danger btn-block">Join</button>
           </div>
         </form>
       </div>
       <ul class="list-group">
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-2">
-              <p>10:00 AM </p>
-            </div>
-            <div class="col-md-7">
-              <p>Event Creator Name |
-              <b>EVENT TITLE</b> |
-              102 people going</p>
-            </div>
-            <div class="col-md-3">
-              <div class="float-right">
-                <a href="#" class="btn btn-danger">Join</a>
-                <a href="#" class="btn btn-primary">Like</a>
+        <% events.forEach((event) => { %>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-2">
+                <p><%= event.dueDate %> </p>
+              </div>
+              <div class="col-md-7">
+                <p><%= event.eventOrganizer %> |
+                <b><%= event.eventTitle %></b> |
+                102 people going</p>
+              </div>
+              <div class="col-md-3">
+                <div class="float-right">
+                  <a href="/events/join/<%= event.id %>" class="btn btn-danger">Join</a>
+                  <a href="#" class="btn btn-primary">Like</a>
+                </div>
               </div>
             </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-2">
-              <p>10:00 AM </p>
-            </div>
-            <div class="col-md-7">
-              <p>Event Creator Name |
-              <b>EVENT TITLE</b> |
-              102 people going</p>
-            </div>
-            <div class="col-md-3">
-              <div class="float-right">
-                <a href="#" class="btn btn-danger">Join</a>
-                <a href="#" class="btn btn-primary">Like</a>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li class="list-group-item">
-          <div class="row">
-            <div class="col-md-2">
-              <p>10:00 AM </p>
-            </div>
-            <div class="col-md-7">
-              <p>Event Creator Name |
-              <b>EVENT TITLE</b> |
-              102 people going</p>
-            </div>
-            <div class="col-md-3">
-              <div class="float-right">
-                <a href="#" class="btn btn-danger">Join</a>
-                <a href="#" class="btn btn-primary">Like</a>
-              </div>
-            </div>
-          </div>
-        </li>
+          </li>
+        <% }) %>
       </ul>
     </div>
   <script>

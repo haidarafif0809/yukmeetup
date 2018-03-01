@@ -6,18 +6,18 @@ const app = express();
 const auth = require('../helpers/auth');
 
 
+
 router.get('/',auth.isLogin,function(req,res){
   models.Event.findAll({
     where: {
       UserId: req.session.user.id
     }
-  })
-    .then((dataEvent) =>{
+  }).then((dataEvent) =>{
       let obj = {
         dataEvent: dataEvent
       }
       res.render('events/listEvents.ejs',obj)
-    })
+   })
 })
 
 router.get('/add',auth.isLogin,function(req,res){
@@ -86,6 +86,12 @@ router.get('/delete/:id',auth.isLogin,function(req,res){
   })
 })
 
+
+router.get('/join/:id',function(req,res){
+
+  res.send('join');
+});
+
 router.get('/listAttendance/:id',auth.isLogin,function(req,res){
   models.Attendee.findOne({
     include:[{model:models.User}],
@@ -98,5 +104,6 @@ router.get('/listAttendance/:id',auth.isLogin,function(req,res){
     // res.send(dataUser);
   })
 })
+
 
 module.exports = router;
