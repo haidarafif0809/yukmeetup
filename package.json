@@ -25,6 +25,8 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "pg": "^7.4.1",
-    "sequelize": "^4.34.1"
+    "request": "^2.83.0",
+    "sequelize": "^4.34.1",
+    "xml2js": "^0.4.19"
   }
 }

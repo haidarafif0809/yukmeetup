@@ -1,0 +1,34 @@
+<% include ../partials/header %>
+<% include ../partials/navbar %>
+
+  <div class="container">
+    <h2>EVENT LIST</h2></br>
+    <a class="btn btn-primary" href="/events/add">Add Events</a></br></br>
+    <table class="table">
+      <thead>
+        <th>Due Date</th>
+        <th>Event Title</th>
+        <th>Event Organizer</th>
+        <th>Attendance</th>
+        <th>Action</th>
+      </thead>
+      <tbody>
+        <% for(let i in dataEvent){ %>
+          <tr>
+            <td><%= dataEvent[i].dueDate %></td>
+            <td><%= dataEvent[i].eventTitle %></td>
+            <td><%= dataEvent[i].eventOrganizer %></td>
+            <td>
+              <a class="btn btn-info" href="/events/listAttendance/<%= dataEvent[i].id %>">Show List</a>
+            </td>
+            <td>
+              <a class="btn btn-warning" href="/events/edit/<%= dataEvent[i].id %>" >Edit</a>
+              <a class="btn btn-danger" href="/events/delete/<%= dataEvent[i].id %>">Delete</a>
+            </td>
+          </tr>
+          <% } %>
+      </tbody>
+    </table>
+  </div>
+
+<% include ../partials/footer %>
